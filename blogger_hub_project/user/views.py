@@ -36,11 +36,11 @@ def signup_page(request):
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
             if CustomUser.objects.filter(email=email).exists():
-                messages.error(request, 'Email already exists')
-                return render(request, 'signup.html', {'form': form})
-            user = CustomUser.objects.create_user(email=email, password=password)
-            login(request, user)
-            return redirect('main_home')
+                messages.error(request, 'User with this email already exists')
+            else:
+                user = CustomUser.objects.create_user(email=email, password=password)
+                login(request, user)
+                return redirect('main_home')
     else:
         form = UserSignupForm()
-        return render(request, 'signup.html', {'form': form})
+    return render(request, 'signup.html', {'form': form})
