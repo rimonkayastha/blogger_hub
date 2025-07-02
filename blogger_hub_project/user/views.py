@@ -1,20 +1,46 @@
 from django.shortcuts import render, redirect
 from .models import CustomUser
 from .forms import UserLoginForm
+from .forms import UserSignupForm
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
 
 # Create your views here.
-def login_page(request):
+
+def default_direct(request):
     if request.user.is_authenticated:
         return redirect('main_home')
+    else:
+        return redirect('login_page')
+
+def login_page(request):
     if request.method == 'POST': 
         form = UserLoginForm(request.POST)
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        user = authenticate(request, username=email, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('main_home')
+        else:
+            messages.error(request, 'Invalid email or password')
+            return render(request, 'login.html', {'form': form})
+    else:
+        form = UserLoginForm()
+        return render(request, 'login.html', {'form': form})
+
+def signup_page(request):
+    if request.method == 'POST': 
+        form = UserSignupForm(request.POST)
         if form.is_valid():
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
-            if CustomUser.objects.filter(email=email, password=password).exists():
-                return redirect('main_home')
-            else:
-                messages.error(request, 'Invalid email or password')
+            if CustomUser.objects.filter(email=email).exists():
+                messages.error(request, 'Email already exists')
+                return render(request, 'signup.html', {'form': form})
+            user = CustomUser.objects.create_user(email=email, password=password)
+            login(request, user)
+            return redirect('main_home')
     else:
-        form = UserLoginForm()
-    return render(request, 'login.html', {'form': form})
+        form = UserSignupForm()
+        return render(request, 'signup.html', {'form': form})

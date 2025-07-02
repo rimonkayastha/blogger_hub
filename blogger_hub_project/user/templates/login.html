@@ -6,4 +6,12 @@
         {{ form.as_p }}
         <button type="submit" class="login">Login</button>
     </form>
+    <a href ="{% url 'signup_page' %}">
+        <button class="Signup">
+            Don't have an account? Sign up.
+        </button>
+        {% if messages %}
+            <p class="error-message">Invalid email or password</p>
+        {% endif %}
+    </a>
 {% endblock %}
