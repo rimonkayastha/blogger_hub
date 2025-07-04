@@ -1,0 +1,35 @@
+{% extends 'header_home.html' %}
+{% load static %}
+
+{% block content %}
+<div class="account-top-section">
+    <div class="account-section">
+        <div class="image-section">
+            <img src="{% static 'icons/account.png' %}" class="profileimg">
+        </div>
+        <div class="account-details">
+            <div class="name">
+                <h2>Name: {{ user.first_name }} {{ user.last_name }}</h2>
+            </div>
+            <div class="username">
+                <h2>Username: {{user.username}}</h2>
+            </div>
+            <div class="email">
+                <h3>Email: {{user.email}}</h3>
+            </div>
+        </div>
+        <div class="edit-symbol">
+            <form action="{% url 'page_redirect' %}" method="post" class="edit-profile">
+                <button type="submit" class="editprofilebutton" name="redirect-type" name="edit-profile">
+                    <div class="edit-box">
+                        <img src="{% static 'icons/edit.png' %}" class='editprofileimg'>
+                    </div>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="account-bottom-section">
+
+</div>
+{% endblock %}

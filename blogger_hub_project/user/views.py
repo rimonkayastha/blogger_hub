@@ -35,12 +35,17 @@ def signup_page(request):
         if form.is_valid():
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
+            username = form.cleaned_data['username']
             if CustomUser.objects.filter(email=email).exists():
                 messages.error(request, 'User with this email already exists')
             else:
-                user = CustomUser.objects.create_user(email=email, password=password)
+                user = CustomUser.objects.create_user(email=email, password=password, username = username)
                 login(request, user)
                 return redirect('main_home')
     else:
         form = UserSignupForm()
     return render(request, 'signup.html', {'form': form})
+
+def account_page(request):
+    user = request.user
+    return render(request, 'account.html', {'user': user})

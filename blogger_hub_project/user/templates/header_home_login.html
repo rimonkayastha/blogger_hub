@@ -1,0 +1,24 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block head %}
+    <div class="left-section">
+    </div>
+    <div class="middle-section">
+        <form action='{% url "page_redirect" %}' method="post" class="home-direct">
+            {% csrf_token %}
+            <button type="submit" name="redirect-type" value="home-direct" class="homedir">
+                <img src="{% static 'icons/bloggers_hub.png' %}" class="homedirimg">
+            </button>
+        </form>
+    </div>
+    <div class="right-section">
+    </div>
+{% endblock %}
+
+{% block body %}
+    {% block content %}
+    {% endblock %}
+{% endblock %}
