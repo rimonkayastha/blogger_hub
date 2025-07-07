@@ -30,8 +30,12 @@ button {
 .body {
     margin-top: 110px;
 }
-.logoutimg, .newblogimg, .accountdirimg {
+.logoutimg, .newblogimg {
     height: 60px;
+}
+.accountdirimg {
+    height: 60px;
+    border-radius: 30px;
 }
 .homedirimg {
     height: 100px;
@@ -77,7 +81,8 @@ button {
     margin-top: 10px;
 }
 .profileimg {
-    height: 200px;
+    width: 200px;
+    border-radius: 100px;
 }
 .account-details {
     display: flex;
@@ -136,5 +141,5 @@ button {
     width: 100%
 }
 .post-image {
-    width: 100%;
+    width: 200px;
 }

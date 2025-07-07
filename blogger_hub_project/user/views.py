@@ -55,7 +55,7 @@ def account_page(request, username):
 def account_edit_page(request, username):
     user = get_object_or_404(CustomUser, username=username)
     if request.method == 'POST':
-        form = AccountEditForm(request.POST, instance=user)
+        form = AccountEditForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
             user = form.save(commit=False)
             user.save()

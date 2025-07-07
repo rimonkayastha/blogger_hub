@@ -5,7 +5,11 @@
 <div class="account-top-section">
     <div class="account-section">
         <div class="image-section">
+        {% if not user.profile_image %}
             <img src="{% static 'icons/account.png' %}" class="profileimg">
+        {% else %}
+            <img src="{{ user.profile_image.url }}" class="profileimg">
+        {% endif %}
         </div>
         <div class="account-details">
             <div class="name">

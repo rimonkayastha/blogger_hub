@@ -27,9 +27,9 @@
                 <img src="{% static 'icons/logout.png' %}" class="logoutimg">
             </button>
         </form>
-        <a href = "{% url 'account_page' username=request.user.username %}">
-            <img src="{% static 'icons/account.png' %}" class="accountdirimg">
-        </a>
+        {% block accountphoto %}
+            
+        {% endblock %}
     </div>
 {% endblock %}
 
