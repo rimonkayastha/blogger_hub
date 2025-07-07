@@ -1,0 +1,28 @@
+{% extends 'header_home.html' %}
+{% load static %}
+
+{% block content %}
+<div class="account-top-section">
+    <div class="account-section">
+        <div class="image-section">
+            <img src="{% static 'icons/account.png' %}" class="profileimg">
+        </div>
+        <div class="account-details">
+            <form class="account_edit_form" method="post">
+                {% csrf_token %}
+                {% for field in form.visible_fields %}
+                    <div class="field">
+                        {{field.label_tag}}
+                        {{field}}
+                        {{field.errors}}
+                    </div>
+                {% endfor %}
+                <button class="save-btn" type="submit">SAVE</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="account-bottom-section">
+
+</div>
+{% endblock %}

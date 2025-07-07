@@ -27,12 +27,9 @@
                 <img src="{% static 'icons/logout.png' %}" class="logoutimg">
             </button>
         </form>
-        <form action='{% url "page_redirect" %}' method="post" class="account-direct">
-            {% csrf_token %}
-            <button type="submit" name="redirect-type" value="account" class="accountdir">
-                <img src="{% static 'icons/account.png' %}" class="accountdirimg">
-            </button>
-        </form>
+        <a href = "{% url 'account_page' username=request.user.username %}">
+            <img src="{% static 'icons/account.png' %}" class="accountdirimg">
+        </a>
     </div>
 {% endblock %}
 

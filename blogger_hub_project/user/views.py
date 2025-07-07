@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import CustomUser
 from .forms import UserLoginForm
 from .forms import UserSignupForm
+from .forms import AccountEditForm
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 
@@ -46,6 +47,21 @@ def signup_page(request):
         form = UserSignupForm()
     return render(request, 'signup.html', {'form': form})
 
-def account_page(request):
-    user = request.user
-    return render(request, 'account.html', {'user': user})
+def account_page(request, username):
+    Users = CustomUser.objects
+    user = get_object_or_404(CustomUser, username=username)
+    return render(request, 'account.html', {'user': user, 'Users' : Users})
+
+def account_edit_page(request, username):
+    user = get_object_or_404(CustomUser, username=username)
+    if request.method == 'POST':
+        form = AccountEditForm(request.POST, instance=user)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.save()
+            return redirect('account_page', username=username)
+        else:
+           return render(request, 'account_edit.html', {'user': user, 'form':form}) 
+    else:
+        form = AccountEditForm(instance=user)
+        return render(request, 'account_edit.html', {'user': user, 'form':form})

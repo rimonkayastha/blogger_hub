@@ -18,15 +18,13 @@
                 <h3>Email: {{user.email}}</h3>
             </div>
         </div>
-        <div class="edit-symbol">
-            <form action="{% url 'page_redirect' %}" method="post" class="edit-profile">
-                <button type="submit" class="editprofilebutton" name="redirect-type" name="edit-profile">
-                    <div class="edit-box">
-                        <img src="{% static 'icons/edit.png' %}" class='editprofileimg'>
-                    </div>
-                </button>
-            </form>
-        </div>
+        {% if user == request.user %}
+            <div class="edit-symbol">
+                <a href="{% url 'account_edit_page' username=request.user.username %}">
+                    <img src="{% static 'icons/edit.png' %}" class='editprofileimg'>
+                </a>
+            </div>
+        {% endif %}
     </div>
 </div>
 <div class="account-bottom-section">
