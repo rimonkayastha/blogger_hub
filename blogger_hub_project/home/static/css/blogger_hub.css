@@ -125,3 +125,16 @@ button {
     height: 150px;
     width: 150px;
 }
+.post-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 20px;
+    row-gap: 20px;
+}
+.post {
+    background-color: yellow;
+    width: 100%
+}
+.post-image {
+    width: 100%;
+}

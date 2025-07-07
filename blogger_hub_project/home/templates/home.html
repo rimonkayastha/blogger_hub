@@ -1,5 +1,25 @@
 {% extends 'header_home.html' %}
+{% load static %}
 
 {% block content %}
-    
+    <div class="post-grid">
+    {% for post in posts %}
+        <div class="post">
+            <div class="post-title">
+                {{post.title}}
+            </div>
+            <div class="post-author">
+                {{post.author.username}}
+            </div>
+            {% if post.post_image %}
+                <div class="post-image">
+                    <img src="{{post.post_image.url}}" width=500>
+                </div>
+            {% endif %}
+            <div class="post-text">
+                {{post.text}}
+            </div>
+        </div>
+    {% endfor %}
+    </div>
 {% endblock %}

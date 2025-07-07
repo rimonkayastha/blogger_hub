@@ -1,1 +1,14 @@
 {% extends 'header_home.html' %}
+
+{% block content %}
+<form class="new_blog_form" method="post" enctype = "multipart/form-data">
+    {% csrf_token %}
+    {% for field in form.visible_fields %}
+        {{field.label_tag}}
+        {{field}}
+        {{field.errors}}
+        <h3></h3>
+    {% endfor %}
+    <button type="submit" class="submit-button">CREATE</button>
+</form>
+{% endblock %}
