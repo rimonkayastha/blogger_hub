@@ -1,0 +1,30 @@
+<div class="post-grid">
+    {% for post in posts %}
+        <div class="post">
+            <a href="{% url 'post_detail' pk=post.pk %}">
+                <div class="post-title">
+                    {{post.title}}
+                </div>
+            </a>
+            <div class="post-author">
+                {{post.author.username}}
+            </div>
+            {% if post.post_image %}
+                <div class="post-image">
+                    <img src="{{post.post_image.url}}">
+                </div>
+            {% endif %}
+            <div class="post-text">
+                {{post.text}}
+            </div>
+            <div class="published-date">
+                {{post.published_date}}
+            </div>
+            {% if post.edited_date %}
+                <div class="edited-date">
+                    {{post.edited_date}}
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>

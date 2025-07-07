@@ -2,34 +2,8 @@
 {% load static %}
 
 {% block accountphoto %}
-    {% if not user.profile_image %}
-        <a href = "{% url 'account_page' username=request.user.username %}">
-            <img src="{% static 'icons/account.png' %}" class="accountdirimg">
-        </a>
-    {% else %}
-        <img src="{{ user.profile_image.url }}" class="accountdirimg">
-    {% endif %}
-    
+    {% include 'account_photo_header.html' %}   
 {% endblock %}
 {% block content %}
-    <div class="post-grid">
-    {% for post in posts %}
-        <div class="post">
-            <div class="post-title">
-                {{post.title}}
-            </div>
-            <div class="post-author">
-                {{post.author.username}}
-            </div>
-            {% if post.post_image %}
-                <div class="post-image">
-                    <img src="{{post.post_image.url}}">
-                </div>
-            {% endif %}
-            <div class="post-text">
-                {{post.text}}
-            </div>
-        </div>
-    {% endfor %}
-    </div>
+    {% include 'post_view.html' %}
 {% endblock %}

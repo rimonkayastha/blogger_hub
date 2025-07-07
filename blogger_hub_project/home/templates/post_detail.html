@@ -1,0 +1,40 @@
+{% extends 'header_home.html' %}
+{% load static %}
+
+{% block accountphoto %}
+    {% include 'account_photo_header.html' %}   
+{% endblock %}
+
+{% block content %}
+<div class="one-post">
+    <div class="post">
+        {% if post.author == request.user %}
+            <a href="{% url 'post_edit' pk=post.pk %}">
+                <img src="{% static 'icons/edit.png' %}">
+            </a>
+        {% endif %}
+        <div class="post-title">
+            {{post.title}}
+        </div>
+        <div class="post-author">
+            {{post.author.username}}
+        </div>
+        {% if post.post_image %}
+            <div class="post-image">
+                <img src="{{post.post_image.url}}">
+            </div>
+        {% endif %}
+        <div class="post-text">
+            {{post.text}}
+        </div>
+        <div class="published-date">
+            {{post.published_date}}
+        </div>
+        {% if post.edited_date %}
+            <div class="edited-date">
+                {{post.edited_date}}
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

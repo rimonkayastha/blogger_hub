@@ -35,6 +35,8 @@ button {
 }
 .accountdirimg {
     height: 60px;
+    width: 60px;
+    object-fit: contain;
     border-radius: 30px;
 }
 .homedirimg {
@@ -82,6 +84,8 @@ button {
 }
 .profileimg {
     width: 200px;
+    height: 200px;
+    object-fit: contain;
     border-radius: 100px;
 }
 .account-details {

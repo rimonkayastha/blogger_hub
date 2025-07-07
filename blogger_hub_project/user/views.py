@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import CustomUser
+from home.models import Post
 from .forms import UserLoginForm
 from .forms import UserSignupForm
 from .forms import AccountEditForm
@@ -17,18 +18,17 @@ def default_direct(request):
 def login_page(request):
     if request.method == 'POST': 
         form = UserLoginForm(request.POST)
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        user = authenticate(request, username=email, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect('main_home')
-        else:
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
+            user = authenticate(request, username=email, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('main_home')
             messages.error(request, 'Invalid email or password')
-            return render(request, 'login.html', {'form': form})
     else:
         form = UserLoginForm()
-        return render(request, 'login.html', {'form': form})
+    return render(request, 'login.html', {'form': form})
 
 def signup_page(request):
     if request.method == 'POST': 
@@ -47,19 +47,20 @@ def signup_page(request):
         form = UserSignupForm()
     return render(request, 'signup.html', {'form': form})
 
-def account_page(request, username):
+def account_page(request):
     Users = CustomUser.objects
-    user = get_object_or_404(CustomUser, username=username)
-    return render(request, 'account.html', {'user': user, 'Users' : Users})
+    user = get_object_or_404(CustomUser, username=request.user.username)
+    posts = Post.objects.filter(author=user).order_by('published_date')
+    return render(request, 'account.html', {'user': user, 'Users' : Users, 'posts': posts})
 
-def account_edit_page(request, username):
-    user = get_object_or_404(CustomUser, username=username)
+def account_edit_page(request):
+    user = get_object_or_404(CustomUser, username=request.user.username)
     if request.method == 'POST':
         form = AccountEditForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
             user = form.save(commit=False)
             user.save()
-            return redirect('account_page', username=username)
+            return redirect('account_page', username=request.user.username)
         else:
            return render(request, 'account_edit.html', {'user': user, 'form':form}) 
     else:

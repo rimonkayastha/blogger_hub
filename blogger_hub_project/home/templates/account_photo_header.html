@@ -1,0 +1,11 @@
+{% load static %}
+
+{% if not user.profile_image %}
+    <a href = "{% url 'account_page' %}">
+        <img src="{% static 'icons/account.png' %}" class="accountdirimg">
+    </a>
+{% else %}
+    <a href = "{% url 'account_page' %}">
+        <img src="{{ user.profile_image.url }}" class="accountdirimg">
+    </a>
+{% endif %}

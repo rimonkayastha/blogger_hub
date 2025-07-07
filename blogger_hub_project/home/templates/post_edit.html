@@ -14,6 +14,12 @@
         {{field.errors}}
         <h3></h3>
     {% endfor %}
-    <button type="submit" class="submit-button">CREATE</button>
+    <button type="submit" name='edit-type' value='edit-blog' class="submit-button">SAVE</button>
+</form>
+<form class="delete_blog" method="post">
+    {% csrf_token %}
+    <button type="submit" name="edit-type" value="delete-blog" class="delete-button">
+        <img src="{% static 'icons/delete-icon.png' class='delete-icon' %}">
+    </button>
 </form>
 {% endblock %}

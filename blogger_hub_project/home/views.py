@@ -44,3 +44,26 @@ def home(request):
     posts = Post.objects.order_by('published_date')
     return render(request, 'home.html', {'user': user, 'posts': posts})
 
+def post_detail(request, pk):
+    post = Post.objects.get(pk=pk)
+    return render(request, 'post_detail.html', {'post': post})
+
+def post_edit(request, pk):
+    post = Post.objects.get(pk=pk)
+    pub_date = post.published_date
+    if request.method== 'POST':
+        if request.POST.get('edit-type') == 'edit-blog':
+            form = NewBlogForm(request.POST, request.FILES, instance=post)
+            if form.is_valid():
+                post = form.save(commit=False)
+                post.author = request.user
+                post.published_date = pub_date
+                post.edited_date = timezone.now()
+                post.save()
+                return redirect('post_detail', pk=pk)
+        elif request.POST.get('edit-type') == 'delete-blog':
+            Post.objects.filter(pk=pk).delete()
+            return redirect('home')
+    else:
+        form = NewBlogForm(instance=post)
+    return render(request, 'post_edit.html', {'form': form})

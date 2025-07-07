@@ -24,7 +24,7 @@
         </div>
         {% if user == request.user %}
             <div class="edit-symbol">
-                <a href="{% url 'account_edit_page' username=request.user.username %}">
+                <a href="{% url 'account_edit_page' %}">
                     <img src="{% static 'icons/edit.png' %}" class='editprofileimg'>
                 </a>
             </div>
@@ -32,6 +32,6 @@
     </div>
 </div>
 <div class="account-bottom-section">
-
+    {% include 'post_view.html' %}
 </div>
 {% endblock %}
