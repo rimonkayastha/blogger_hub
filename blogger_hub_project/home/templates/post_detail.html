@@ -6,35 +6,47 @@
 {% endblock %}
 
 {% block content %}
-<div class="one-post">
-    <div class="post">
-        {% if post.author == request.user %}
-            <a href="{% url 'post_edit' pk=post.pk %}">
-                <img src="{% static 'icons/edit.png' %}">
-            </a>
-        {% endif %}
-        <div class="post-title">
-            {{post.title}}
-        </div>
-        <div class="post-author">
-            {{post.author.username}}
-        </div>
-        {% if post.post_image %}
-            <div class="post-image">
-                <img src="{{post.post_image.url}}">
+<div class="one-post-horizontal">
+    <div class="one-post-grid">
+        <div class="one-post-left">
+            <div class="one-post-left-top">
+                <div class="one-post-title">
+                    {{post.title}}
+                </div>
+                 <a href="{% url 'account_page' username=post.author.username %}">
+                    <div class="one-post-author">
+                        Author: @{{post.author.username}}
+                    </div>
+                </a>
             </div>
-        {% endif %}
-        <div class="post-text">
-            {{post.text}}
-        </div>
-        <div class="published-date">
-            {{post.published_date}}
-        </div>
-        {% if post.edited_date %}
-            <div class="edited-date">
-                {{post.edited_date}}
+            {% if post.post_image %}
+                <div class="one-post-image">
+                    <img src="{{post.post_image.url}}" class="one-post-img">
+                </div>
+            {% endif %}
+            <div class="one-published-date">
+                Published: {{post.published_date}}
             </div>
-        {% endif %}
+            {% if post.edited_date %}
+                <div class="one-edited-date">
+                    Edited: {{post.edited_date}}
+                </div>
+            {% endif %}
+        </div>
+        <div class="one-post-right">
+            {% if post.author == request.user %}
+            <div class="blog-edit-icon">
+                <a href="{% url 'post_edit' pk=post.pk %}">
+                    <div class="blog-edit-symbol">
+                        <img src="{% static 'icons/edit.png' %}" class="blog-edit-img">
+                    </div>
+                </a>
+            </div>
+            {% endif %}
+            <div class="one-post-text">
+                {{post.text}}
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}

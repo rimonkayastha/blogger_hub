@@ -1,30 +1,41 @@
 <div class="post-grid">
+    {% if not posts %}
+        <div class="No-post">
+            <h1>No Posts Yet...</h1>
+        </div>
+    {% endif %}
     {% for post in posts %}
         <div class="post">
-            <a href="{% url 'post_detail' pk=post.pk %}">
-                <div class="post-title">
-                    {{post.title}}
-                </div>
-            </a>
-            <div class="post-author">
-                {{post.author.username}}
+            <div class="post-container">
+                <a href="{% url 'post_detail' pk=post.pk %}">
+                    <div class="post-top">
+                        <div class="post-title">
+                            {{post.title}}
+                        </div>
+                        <div class="post-author">
+                            <a href="{% url 'account_page' username=post.author.username %}">
+                                Author: @{{post.author.username}}
+                            </a>
+                        </div>
+                    </div>
+                    {% if post.post_image %}
+                        <div class="post-image">
+                            <img src="{{post.post_image.url}}" class="post-img">
+                        </div>
+                    {% endif %}
+                    <div class="post-text">
+                        {{post.text}}
+                    </div>
+                    <div class="published-date">
+                        Published: {{post.published_date}}
+                    </div>
+                    {% if post.edited_date %}
+                        <div class="edited-date">
+                            Edited: {{post.edited_date}}
+                        </div>
+                    {% endif %}
+                </a>
             </div>
-            {% if post.post_image %}
-                <div class="post-image">
-                    <img src="{{post.post_image.url}}">
-                </div>
-            {% endif %}
-            <div class="post-text">
-                {{post.text}}
-            </div>
-            <div class="published-date">
-                {{post.published_date}}
-            </div>
-            {% if post.edited_date %}
-                <div class="edited-date">
-                    {{post.edited_date}}
-                </div>
-            {% endif %}
         </div>
     {% endfor %}
 </div>

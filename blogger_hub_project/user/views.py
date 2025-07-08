@@ -8,7 +8,6 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 
 # Create your views here.
-
 def default_direct(request):
     if request.user.is_authenticated:
         return redirect('main_home')
@@ -47,20 +46,20 @@ def signup_page(request):
         form = UserSignupForm()
     return render(request, 'signup.html', {'form': form})
 
-def account_page(request):
+def account_page(request, username):
     Users = CustomUser.objects
-    user = get_object_or_404(CustomUser, username=request.user.username)
+    user = get_object_or_404(CustomUser, username=username)
     posts = Post.objects.filter(author=user).order_by('published_date')
     return render(request, 'account.html', {'user': user, 'Users' : Users, 'posts': posts})
 
-def account_edit_page(request):
-    user = get_object_or_404(CustomUser, username=request.user.username)
+def account_edit_page(request, username):
+    user = get_object_or_404(CustomUser, username=username)
     if request.method == 'POST':
         form = AccountEditForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
             user = form.save(commit=False)
             user.save()
-            return redirect('account_page', username=request.user.username)
+            return redirect('account_page', username=username)
         else:
            return render(request, 'account_edit.html', {'user': user, 'form':form}) 
     else:

@@ -41,7 +41,7 @@ def page_redirect(request):
 
 def home(request):
     user = request.user
-    posts = Post.objects.order_by('published_date')
+    posts = Post.objects.order_by('-published_date')
     return render(request, 'home.html', {'user': user, 'posts': posts})
 
 def post_detail(request, pk):
