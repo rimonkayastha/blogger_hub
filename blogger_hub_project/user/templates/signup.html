@@ -1,14 +1,29 @@
-{% extends 'base.html' %}
+{% extends 'header_home_login.html' %}
 
 {% block content %}
-    <h1>Sign Up Page</h1>
-    <form method="post" class="post-form">{% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="Sign up">Sign up</button>
-    </form>
-    <a href ="{% url 'login_page' %}">
-        <button class="login">
-            Already have an account? Log in.
-        </button>
-    </a>
+    <div class="login-view">
+        <div class="login-view-flex">
+            <div class="login-form">
+                <form method="post" class="post-form">
+                {% csrf_token %}
+                    {% for field in form.visible_fields %}
+                        <div class="input-field">
+                            {{field}}
+                            {{field.errors}}
+                        </div>
+                    {% endfor %}
+                    <div class="signbutton">
+                        <button type="submit" class="login">Sign Up</button>
+                    </div>
+                </form>
+            </div>
+            <div class="signup-direct">
+                <a href ="{% url 'login_page' %}">
+                    <button class="Signup">
+                        Already have an account? Log in.
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
 {% endblock %}

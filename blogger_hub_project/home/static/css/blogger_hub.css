@@ -89,26 +89,6 @@ button {
     align-items: center;
     height: 250px;
 }
-.account-edit-top-section {
-    display: flex;
-    justify-content: center;
-    height: 500px;
-}
-.account-edit-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    width: 600px;
-    height:80%;
-    background-color: #001f3f;
-    border-radius: 50px;
-}
-.account-edit-within {
-    display: flex;
-    width: 80%;
-    justify-content: center;
-}
 .profileimg {
     width: 150px;
     height: 150px;
@@ -136,33 +116,6 @@ button {
     width: 60%;
     margin-left: 10px;
     margin-top: 10px;
-}
-.field {
-    width: 100%;
-}
-.Title {
-    display: inline;
-    text-align: center;
-    font-size: 30px;
-    padding-bottom: 30px;
-}
-.Form {
-    display: inline;
-    text-align: center;
-    font-size: 20px;
-}
-.signbutton {
-    font-size: 30px;
-    display: inline-block;
-    border: 1px solid black;
-}
-.additional {
-    display: inline;
-    text-align: center;
-    border: 1px solid black;
-}
-.Signup {
-    text-align: center;
 }
 .account_edit_form {
     height: 150px;
@@ -227,14 +180,22 @@ button {
 .post-image {
     width: 100%;
     height: 170px;
-    object-fit: fill;
 }
 .post-img {
     width: 100%;
     height: 100%;
+    object-fit: cover;
 }
 .post-text {
     height: 55px;
+    padding-left: 2px;
+    padding-right: 2px;
+    border-bottom: 1px solid gray;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.post-text-no-image {
+    flex: 1;
     padding-left: 2px;
     padding-right: 2px;
     border-bottom: 1px solid gray;
@@ -293,6 +254,7 @@ button {
 .one-post-img {
     width: 100%;
     height: 80%;
+    object-fit: cover;
 }
 .one-published-date, .one-edited-date {
     height: 30px;
@@ -325,6 +287,7 @@ button {
     border: 1px solid gray;
     border-radius: 20px;
     margin-bottom: 10px;
+    margin-top: 10px;
 }
 .blog-edit-symbol {
     height: 50px;
@@ -335,4 +298,234 @@ button {
 .delete-icon {
     height: 30px;
     width: 30px;
+}
+.login-view {
+    width:100%;
+    height:450px;
+    display: flex;
+    justify-content: center;
+}
+.login-view-flex {
+    width: 500px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.login-title {
+    font-weight: bold;
+    font-size: 50px;
+    margin-bottom: 30px;
+}
+.login-form {
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.input-field {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: right;
+}
+.input-label {
+    margin-right: 5px;
+    font-size: 25px;
+}
+.email-input, .password-input, .username-input {
+    height: 60px;
+    width: 400px;
+    font-size: 25px;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+.signbutton {
+    display: flex;
+    justify-content: center;
+}
+.login {
+    height: 60px;
+    width: 400px;
+    margin-top: 20px;
+    background-color: #001f3f;
+    color: whitesmoke;
+    box-shadow: 1px 1px 15px black;
+    font-size: 20px;
+    transition: background-color 0.3s;
+}
+.login:hover {
+    background-color: #004181;
+    cursor: pointer;
+}
+.Signup {
+    font-size: 15px;
+}
+.Signup:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.account-edit-top-section {
+    display: flex;
+    justify-content: center;
+    height: 500px;
+}
+.account-edit-section {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    margin-top: 20px;
+    width: 600px;
+    height:80%;
+    background-color: #001f3f;
+    border-radius: 50px;
+}
+.image-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.account-input-details {
+    display: flex;
+    flex-direction: column;
+    color: whitesmoke;
+    margin-top: 41px;
+}
+.account-edit-form {
+    width: 300px;
+}
+.field-form {
+    width: 400px;;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px;
+}
+.field-label-list {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+.field-label, .field {
+    margin-bottom: 5px;
+}
+.field-label {
+    margin-top: 24px;
+}
+.field-list {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 15px;
+}
+.account_input {
+    height: 35px;
+    width: 202px;
+    font-size: 15px;
+}
+.save-button-class {
+    display: flex;
+    justify-content: center;
+    width: 400px;
+}
+.save-btn {
+    width: 50px;
+    height: 30px;
+    background-color: whitesmoke;
+    transition: background-color 0.3s;
+    box-shadow: 1px 1px 5px black;
+}
+.save-btn:hover {
+    cursor: pointer;
+    background-color: rgb(207, 206, 206);
+}
+.blog-new-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+.blog-new-grid {
+    display: grid;
+    width: 50%;
+    margin-top: 20px;
+    grid-template-columns: 5fr 1fr;
+    background-color: rgb(253, 253, 213);
+    box-shadow: 2px 2px 10px rgb(128, 128, 128);
+    border-radius: 30px;
+}
+.blog-new-grid-section {
+    display: grid;
+    width: 50%;
+    margin-top: 20px;
+    grid-template-columns: 1fr;
+    background-color: rgb(253, 253, 213);
+    box-shadow: 2px 2px 10px rgb(128, 128, 128);
+    border-radius: 30px;
+}
+.new_blog_form {
+    width: 100%;
+    display: block;
+    margin: 10px;
+}
+.blog_input_list {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    flex: 5;
+    column-gap: 10px;
+    row-gap: 10px;
+    width: 100%;
+}
+.post-title-input {
+    height: 30px;
+    width: 100%;
+}
+.post-text-input {
+    height: 200px;
+    width: 100%;
+}
+.blog_input_field_label_list {
+    margin-bottom: 18px;
+    margin-top: 6px;
+}
+.blog_input_field_list {
+    margin-bottom: 10px;
+}
+.blog-new-grid-left {
+    display: flex;
+    flex-direction: column;
+}
+.blog-new-grid-left-section {
+    display: flex;
+    flex-direction: column;
+    margin-right: 30px;
+}
+.blog-new-grid-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.blog-new-grid-right-middle {
+    display: flex;
+    justify-content: center;
+}
+.save-flex {
+    display: flex;
+    width: 100%;
+    flex: 1;
+    justify-content: center;
+}
+.submit-button {
+    width: 75px;
+    height: 30px;
+    font-size: 20px;
+    background-color: navy;
+    transition: background-color 0.3s;
+    box-shadow: 1px 1px 5px black;
+    border-radius: 3px;
+    color: white;
+}
+.submit-button:hover {
+    cursor: pointer;
+    background-color: rgb(2, 2, 179);
 }

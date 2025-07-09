@@ -22,10 +22,14 @@
                         <div class="post-image">
                             <img src="{{post.post_image.url}}" class="post-img">
                         </div>
+                        <div class="post-text">
+                            {{post.text}}
+                        </div>
+                    {% else %}
+                        <div class="post-text-no-image">
+                            {{post.text}}
+                        </div>
                     {% endif %}
-                    <div class="post-text">
-                        {{post.text}}
-                    </div>
                     <div class="published-date">
                         Published: {{post.published_date}}
                     </div>

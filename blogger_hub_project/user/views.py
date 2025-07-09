@@ -59,7 +59,7 @@ def account_edit_page(request, username):
         if form.is_valid():
             user = form.save(commit=False)
             user.save()
-            return redirect('account_page', username=username)
+            return redirect('account_page', username=user.username)
         else:
            return render(request, 'account_edit.html', {'user': user, 'form':form}) 
     else:

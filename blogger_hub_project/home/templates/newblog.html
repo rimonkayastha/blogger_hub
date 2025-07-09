@@ -6,14 +6,27 @@
 {% endblock %}
 
 {% block content %}
-<form class="new_blog_form" method="post" enctype = "multipart/form-data">
-    {% csrf_token %}
-    {% for field in form.visible_fields %}
-        {{field.label_tag}}
-        {{field}}
-        {{field.errors}}
-        <h3></h3>
-    {% endfor %}
-    <button type="submit" class="submit-button">CREATE</button>
-</form>
+<div class="blog-new-container">
+    <div class="blog-new-grid-section">
+        <div class="blog-new-grid-left-section">
+            <form class="new_blog_form" method="post" enctype = "multipart/form-data">
+                {% csrf_token %}
+                <div class="blog_input_list">
+                {% for field in form.visible_fields %}
+                    <div class="blog_input_field_label_list">
+                        <label class="blog_input_field">{{field.label_tag}}</label>
+                    </div>
+                    <div class="blog_input_field_list">
+                        {{field}}
+                        {{field.errors}}
+                    </div>
+                {% endfor %}
+                </div>
+                <div class="save-flex">
+                    <button type="submit" name='edit-type' value='edit-blog' class="submit-button">SAVE</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}
