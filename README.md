@@ -2,7 +2,7 @@
 
 ## Website to write, post, edit and view blog posts written by you and other users.
 
-This project is a practice project developed while learning the Django framework. While influenced from the DjangoGirls' intro to Django, this project was built from scratch to revise fundamental aspects of developing a Django web app. Currently, Blogger's hub meets the following functionalities:
+This project is a practice project developed while learning the Django framework as part of my internship at Calcgen Solutions. While influenced from the DjangoGirls' intro to Django, this project was built from scratch to revise fundamental aspects of developing a Django web app. Currently, Blogger's hub meets the following functionalities:
 
 * Sign up and login with a secure authentication system
 * Edit account details
