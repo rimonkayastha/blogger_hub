@@ -44,7 +44,7 @@ def page_redirect(request):
 def home(request):
     user = request.user
     posts_list = Post.objects.order_by('-published_date')
-    p = Paginator(posts_list, 6)
+    p = Paginator(posts_list, 3)
     page = request.GET.get('page')
     posts = p.get_page(page)
     almost_final_page = posts.paginator.num_pages - 1
