@@ -34,17 +34,21 @@
             {% endif %}
         </div>
         <div class="one-post-right">
-            {% if post.author == request.user %}
+            
             <div class="blog-edit-icon">
-                <a href="{% url 'post_edit' pk=post.pk %}">
-                    <div class="blog-edit-symbol">
-                        <img src="{% static 'icons/edit.png' %}" class="blog-edit-img">
-                    </div>
+                <a href="{% url 'account_page' username=post.author.username %}">
+                    <img src="{{post.author.profile_image.url}}" class="account-profile-photo-detail-img">
                 </a>
+                {% if post.author == request.user %}
+                    <a href="{% url 'post_edit' pk=post.pk %}">
+                        <div class="blog-edit-symbol">
+                            <img src="{% static 'icons/edit.png' %}" class="blog-edit-img">
+                        </div>
+                    </a>
+                {% endif %}
             </div>
-            {% endif %}
             <div class="one-post-text">
-                {{post.text}}
+                {{post.text|linebreaksbr}}
             </div>
         </div>
     </div>

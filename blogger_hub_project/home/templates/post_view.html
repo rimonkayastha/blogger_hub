@@ -1,3 +1,6 @@
+<div class="page-title">
+    RECENT POSTS
+</div>
 <div class="post-grid">
     {% if not posts %}
         <div class="No-post">
@@ -6,6 +9,9 @@
     {% endif %}
     {% for post in posts %}
         <div class="post">
+            <a href="{% url 'account_page' username=post.author.username %}">
+                <img src="{{post.author.profile_image.url}}" class="account-profile-photo-img">
+            </a>
             <div class="post-container">
                 <a href="{% url 'post_detail' pk=post.pk %}">
                     <div class="post-top">

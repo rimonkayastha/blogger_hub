@@ -49,7 +49,7 @@ def signup_page(request):
 def account_page(request, username):
     Users = CustomUser.objects
     user = get_object_or_404(CustomUser, username=username)
-    posts = Post.objects.filter(author=user).order_by('published_date')
+    posts = Post.objects.filter(author=user).order_by('-published_date')
     return render(request, 'account.html', {'user': user, 'Users' : Users, 'posts': posts})
 
 def account_edit_page(request, username):
