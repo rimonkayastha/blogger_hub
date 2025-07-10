@@ -16,7 +16,7 @@ This project is a practice project developed while learning the Django framework
 The easiest way to set up the project would be as follows:
 * Clone this repo
 * Activate the virtual environment through the myvenv directory
-* Install Django 5.2.4 using pip. Follow the Django Documentation guide - [Django Installation Guide] (https://www.djangoproject.com/download/)
+* Install Django 5.2.4 using pip. Follow the Django Documentation guide - [Django Installation Guide](https://www.djangoproject.com/download/)
 * In the [blogger_hub_project](./blogger_hub_project/) directory, open terminal and run: `$ python manage.py runserver`
 
 ## Known Issues (Work in Progress)
