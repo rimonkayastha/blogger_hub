@@ -5,6 +5,8 @@ from user.models import CustomUser
 from .models import Post
 from .forms import NewBlogForm
 
+from django.core.paginator import Paginator
+
 # Create your views here.
 def main_home(request):
     if request.user.is_authenticated:
@@ -41,8 +43,12 @@ def page_redirect(request):
 
 def home(request):
     user = request.user
-    posts = Post.objects.order_by('-published_date')
-    return render(request, 'home.html', {'user': user, 'posts': posts})
+    posts_list = Post.objects.order_by('-published_date')
+    p = Paginator(posts_list, 6)
+    page = request.GET.get('page')
+    posts = p.get_page(page)
+    almost_final_page = posts.paginator.num_pages - 1
+    return render(request, 'home.html', {'user': user, 'posts': posts, 'almost_final_page': almost_final_page})
 
 def post_detail(request, pk):
     post = Post.objects.get(pk=pk)
