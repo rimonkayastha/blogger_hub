@@ -38,10 +38,14 @@ button {
 .logoutimg, .newblogimg {
     height: 60px;
 }
+.logoutimg {
+    margin-left: 10px;
+}
 .accountdirimg {
     height: 60px;
     width: 60px;
     border-radius: 30px;
+    margin-left: 10px;
 }
 .accountdirimg, .homedirimg, .logoutimg, .newblogimg, .edit-symbol, .account-profile-photo-img, .account-profile-photo-detail-img, .blog-edit-symbol {
     transition: filter 0.3s;
@@ -58,9 +62,43 @@ button {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 150px;
+    width: 500px;
     margin-right: 20px;
-    margin-right: 20px;
+    margin-left: 20px;
+}
+.search-bar-horizontal {
+    display: flex;
+    background-color: white;
+    align-items: center;
+    margin-right: 10px;
+    border-radius: 10px;
+    border: 3px solid #014080;
+}
+.search-bar {
+    height: 47px;
+    border: none;
+    font-size: 22px;
+    padding: 2px;
+    padding-left: 5px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.search-bar:focus {
+    outline: none;
+}
+.search-icon {
+    border-left: 1px solid gray;
+}
+.search-icon-img {
+    height: 37px;
+    width: 37px;
+    padding-left: 10px;
+    padding-right: 10px;
+    transition: filter 0.3s;
+}
+.search-icon-img:hover {
+    cursor: pointer;
+    filter: brightness(80%);
 }
 .left-section {
     display: flex;
@@ -577,6 +615,7 @@ button {
     font-size: 40px;
     margin-top: 20px;
     font-weight: bold;
+    color: #001f3f;
 }
 .bottom-section {
     display: flex;

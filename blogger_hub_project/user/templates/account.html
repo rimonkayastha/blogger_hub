@@ -34,6 +34,11 @@
     </div>
 </div>
 <div class="account-bottom-section">
+    {% block post-view-title %}
+        <div class="page-title">
+            RECENT POSTS
+        </div>
+    {% endblock %}
     {% include 'post_view.html' %}
 </div>
 {% endblock %}

@@ -21,6 +21,19 @@
         </form>
     </div>
     <div class="right-section">
+        <form method="GET" class="search-bar-form" action="{% url 'search_result' %}">
+            {% csrf_token %}
+            <div class="search-bar-horizontal">
+                <div class="search-div">
+                    <input class="search-bar" type="text" name="search-bar" placeholder="Search posts">
+                </div>
+                <div class="search-button-div">
+                    <button type="submit" class="search-icon">
+                        <img src="{% static 'icons/search.png' %}" class="search-icon-img">
+                    </button>
+                </div>
+            </div>
+        </form>
         <form action='{% url "page_redirect" %}' method="post" class="logout-form">
             {% csrf_token %}
             <button type="submit" name="redirect-type" value="logout" class="logout">

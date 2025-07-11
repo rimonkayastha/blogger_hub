@@ -1,6 +1,10 @@
-<div class="page-title">
-    RECENT POSTS
-</div>
+{% block post-view-title %}
+    {% if search_str %}
+        <div class="page-title">
+            POST RESULTS FOR '{{search_str}}'
+        </div>
+    {% endif %}
+{% endblock %}
 <div class="post-grid">
     {% if not posts %}
         <div class="No-post">
@@ -51,30 +55,52 @@
 </div>
 <div class="bottom-section">
     <div class="page-change">
-        {% if posts.paginator.num_pages != 1 %}
-            {% if posts.number != 1 %}
-                <div class="page-change-1">
-                    <a href="?page=1">1</a>
-                </div>
-                {% if posts.number != 2 %}
-                    <div class="page-change-2">
-                        <a href="?page={{posts.previous_page_number}}">Previous</a>
+        {% if posts is not False %}
+            {% if posts.paginator.num_pages != 1 %}
+                {% if posts.number != 1 %}
+                    <div class="page-change-1">
+                        {% if search_str %}
+                            <a href="?page=1&search-bar={{search_str}}">1</a>
+                        {% else %}
+                            <a href="?page=1">1</a>
+                        {% endif %}
+                    </div>
+                    {% if posts.number != 2 %}
+                        <div class="page-change-2">
+                            {% if search_str %}
+                                <a href="?page={{posts.previous_page_number}}&search-bar={{search_str}}">Previous</a>
+                            {% else %}
+                                <a href="?page={{posts.previous_page_number}}">Previous</a>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                {% endif %}
+                <div class="page-change-3">{{posts.number}} of {{posts.paginator.num_pages}}</div>
+                {% if posts.number != posts.paginator.num_pages %}
+                    {% if posts.number != almost_final_page %}
+                        <div class="page-change-4">
+                            {% if search_str %}
+                                <a href="?page={{posts.next_page_number}}&search-bar={{search_str}}">Next</a>
+                            {% else %}
+                                <a href="?page={{posts.next_page_number}}">Next</a>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                    <div class="page-change-5">
+                        {% if search_str %}
+                            <a href="?page={{posts.paginator.num_pages}}&search-bar={{search_str}}">{{posts.paginator.num_pages}}</a>
+                        {% else %}
+                            <a href="?page={{posts.paginator.num_pages}}">{{posts.paginator.num_pages}}</a>
+                        {% endif %}
                     </div>
                 {% endif %}
-            {% endif %}
-            <div class="page-change-3">{{posts.number}} of {{posts.paginator.num_pages}}</div>
-            {% if posts.number != posts.paginator.num_pages %}
-                {% if posts.number != almost_final_page %}
-                    <div class="page-change-4">
-                        <a href="?page={{posts.next_page_number}}">Next</a>
-                    </div>
-                {% endif %}
-                <div class="page-change-5">
-                    <a href="?page={{posts.paginator.num_pages}}">{{posts.paginator.num_pages}}</a>
-                </div>
+            {% else %}
+                <div class="page-change-3">{{posts.number}} of {{posts.paginator.num_pages}}</div>
             {% endif %}
         {% else %}
-            <div class="page-change-3">{{posts.number}} of {{posts.paginator.num_pages}}</div>
+            <div class="page-title">
+                NO POSTS FOUND
+            </div>
         {% endif %}
     </div>
 </div>

@@ -1,14 +1,8 @@
 {% extends 'header_home.html' %}
-{% load static %}
 
 {% block accountphoto %}
     {% include 'account_photo_header.html' %}   
 {% endblock %}
 {% block content %}
-    {% block post-view-title %}
-        <div class="page-title">
-            RECENT POSTS
-        </div>
-    {% endblock %}
     {% include 'post_view.html' %}
 {% endblock %}

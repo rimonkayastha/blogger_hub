@@ -4,6 +4,7 @@ from django.utils import timezone
 from user.models import CustomUser
 from .models import Post
 from .forms import NewBlogForm
+from django.db.models import Q
 
 from django.core.paginator import Paginator
 
@@ -31,15 +32,15 @@ def new_blog(request):
 
 def page_redirect(request):
     if request.method == 'POST':
-            if request.POST.get('redirect-type') == 'logout':
-                logout(request)
-                return redirect('login_page')
-            if request.POST.get('redirect-type') == 'create-new':
-                return redirect('new_blog')
-            if request.POST.get('redirect-type') == 'home-direct':
-                return redirect('main_home')
-            if request.POST.get('redirect-type') == 'account':
-                return redirect('account_page')
+        if request.POST.get('redirect-type') == 'logout':
+            logout(request)
+            return redirect('login_page')
+        if request.POST.get('redirect-type') == 'create-new':
+            return redirect('new_blog')
+        if request.POST.get('redirect-type') == 'home-direct':
+            return redirect('main_home')
+        if request.POST.get('redirect-type') == 'account':
+            return redirect('account_page')
 
 def home(request):
     user = request.user
@@ -73,3 +74,16 @@ def post_edit(request, pk):
     else:
         form = NewBlogForm(instance=post)
     return render(request, 'post_edit.html', {'form': form})
+
+def search_result(request):
+    user=request.user
+    search_str = request.GET.get('search-bar')
+    posts_list = Post.objects.filter(Q(title__icontains=search_str) | Q(author__username__icontains=search_str)).order_by('-published_date')
+    if posts_list is not None:
+        p = Paginator(posts_list, 3)
+        page = request.GET.get('page')
+        posts = p.get_page(page)
+        almost_final_page = posts.paginator.num_pages - 1
+    else: 
+        posts = False
+    return render(request, 'search_result.html', {'posts': posts, 'user': user, 'almost_final_page': almost_final_page, 'search_str': search_str})
