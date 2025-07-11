@@ -40,14 +40,21 @@
                             {{post.text}}
                         </div>
                     {% endif %}
-                    <div class="published-date">
-                        Published: {{post.published_date}}
-                    </div>
-                    {% if post.edited_date %}
-                        <div class="edited-date">
-                            Edited: {{post.edited_date}}
+                    <div class="post-bottom-section">
+                        <div class="like-count-show">
+                            {{post.likers.count}} likes
                         </div>
-                    {% endif %}
+                        <div class="dates">
+                            <div class="published-date">
+                                Published: {{post.published_date}}
+                            </div>
+                            {% if post.edited_date %}
+                                <div class="edited-date">
+                                    Edited: {{post.edited_date}}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
                 </a>
             </div>
         </div>

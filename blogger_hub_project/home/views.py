@@ -53,7 +53,14 @@ def home(request):
 
 def post_detail(request, pk):
     post = Post.objects.get(pk=pk)
-    return render(request, 'post_detail.html', {'post': post})
+    if request.method == 'POST':
+        if request.POST.get('like-button') == 'like':
+            post.likers.add(request.user)
+        elif request.POST.get('like-button') == 'unlike':
+            post.likers.remove(request.user)
+    liked = post.likers.filter(username=request.user.username).exists()
+    likes = post.likers.count()
+    return render(request, 'post_detail.html', {'post': post, 'likes': likes, 'liked': liked})
 
 def post_edit(request, pk):
     post = Post.objects.get(pk=pk)

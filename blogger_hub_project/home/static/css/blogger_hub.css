@@ -113,17 +113,11 @@ button {
     align-items: center;
     flex: 1;
 }
-.left-account-section {
-    
-}
 .middle-account-section {
     display: flex;
     justify-content: center;
     align-items: center;
     flex: 1;
-}
-.right-account-section {
-    
 }
 .account-section {
     display: flex;
@@ -279,6 +273,11 @@ button {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.post-bottom-section {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 5px;
+}
 .one-post-horizontal {
     height: 100%;
     width: 100%;
@@ -348,6 +347,25 @@ button {
     padding-right: 10px;
     display: flex;
     flex-direction: column;
+}
+.one-post-like-section {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+.like-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5px;
+    margin-right: 5px;
+}
+.heart-img {
+    height: 40px;
+    width: 40px;
+}
+.heart-img:hover{
+    cursor: pointer;
 }
 .blog-edit-icon {
     height: 70px;

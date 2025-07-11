@@ -50,6 +50,27 @@
             <div class="one-post-text">
                 {{post.text|linebreaksbr}}
             </div>
+            <div class="one-post-like-section">
+                <div class="like-section">
+                    <div class="like-button-section">
+                        <form method="post" class="one-post-like-form">
+                            {% csrf_token %}
+                            {% if liked %}
+                                <button type="submit" name="like-button" value="unlike" class="unlike-button">
+                                    <img src="{% static 'icons/heart.png' %}" class="heart-img">
+                                </button>
+                            {% else %}
+                                <button type="submit" name="like-button" value="like" class="like-button">
+                                    <img src="{% static 'icons/unheart.png' %}" class="heart-img">
+                                </button>
+                            {% endif %}
+                        </form>
+                    </div>
+                    <div class="like-count">
+                        {{likes}}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
