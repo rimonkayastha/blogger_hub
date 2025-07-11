@@ -2,8 +2,8 @@ from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from django.contrib.auth import logout
 from django.utils import timezone
 from user.models import CustomUser
-from .models import Post
-from .forms import NewBlogForm
+from .models import Post, Comment
+from .forms import NewBlogForm, NewComment
 from django.db.models import Q
 
 from django.core.paginator import Paginator
@@ -53,14 +53,28 @@ def home(request):
 
 def post_detail(request, pk):
     post = Post.objects.get(pk=pk)
+    comment_list = Comment.objects.all().filter(post=post).order_by('-published_date')
     if request.method == 'POST':
         if request.POST.get('like-button') == 'like':
             post.likers.add(request.user)
         elif request.POST.get('like-button') == 'unlike':
             post.likers.remove(request.user)
+        elif request.POST.get('create-comment') == 'comment':
+            form = NewComment(request.POST)
+            if form.is_valid():
+                comment = form.save(commit=False)
+                comment.author = request.user
+                comment.post = post
+                comment.published_date = timezone.now()
+                comment.save()
+    c = Paginator(comment_list, 5)
+    page = request.GET.get('page')
+    comments = c.get_page(page)
+    almost_final_page = comments.paginator.num_pages - 1
     liked = post.likers.filter(username=request.user.username).exists()
     likes = post.likers.count()
-    return render(request, 'post_detail.html', {'post': post, 'likes': likes, 'liked': liked})
+    form = NewComment()
+    return render(request, 'post_detail.html', {'post': post, 'likes': likes, 'liked': liked, 'form': form, 'comments': comments, 'almost_final_page': almost_final_page})
 
 def post_edit(request, pk):
     post = Post.objects.get(pk=pk)

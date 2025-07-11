@@ -689,3 +689,123 @@ button {
     filter: brightness(80%);
     cursor: pointer;
 }
+.comment-section {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(255, 255, 106);
+    margin: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid gray;
+}
+.create-comment-section {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+.profile-photo-comment {
+    height: 140px;
+    width: 140px;
+    border-radius: 70px;
+    margin-right: 20px;
+    border: 1px solid gray;
+    transform: filter 0.3s;
+}
+.profile-photo-comment:hover {
+    filter: brightness(80%);
+}
+.create-comment-section-right {
+    width: 100%;
+}
+.create-comment-form {
+    display: block;
+    width: 100%;
+}
+.comment-input {
+    height: 100px;
+    width: 95%;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+.comment-input:focus {
+    outline: none;
+}
+.comment-button {
+    display: flex;
+    justify-content: center;
+}
+.comment-create-button {
+    height: 40px;
+    width: 80px;
+    background-color: rgb(253, 253, 213);
+    border-radius: 5px;
+    transition: filter 0.3s;
+    border: 1px solid gray;
+}
+.comment-create-button:hover{
+    cursor: pointer;
+    filter: brightness(70%);
+}
+.comment-flex {
+    display: flex;
+    flex-direction: column;
+}
+.comment {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+.comment-right {
+    width: 100%;
+    height: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.comment-right-author {
+    color: #001f3f;
+    display: block;
+}
+.comment-right-author:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+.comment-text-section {
+    display: flex;
+    align-items: top;
+    height: 70px;
+}
+.comment-page-change-1, .comment-page-change-2, .comment-page-change-4, .comment-page-change-5 {
+    margin-right: 5px;
+}
+.comment-page-change-1, .comment-page-change-5 {
+    background-color: #001f3f;
+    color: white;
+    border-radius: 15px;
+    border: 1px solid black;
+    width: 18px;
+    height: 22px;
+    padding-left: 9px;
+    padding-top: 6px;
+    transition: filter 0.3s;
+}
+.comment-page-change-1:hover, .comment-page-change-5:hover {
+    filter: brightness(120%);
+    cursor: pointer;
+}
+.page-change-3 {
+    margin-top: 3px;
+}
+.comment-page-change-2, .comment-page-change-4 {
+    background-color: #001f3f;
+    color: white;
+    border-radius: 15px;
+    padding: 6px;
+    transition: filter 0.3s;
+    margin-top: 3px;
+    border: 1px solid black;
+}
+.page-change-2:hover, .page-change-4:hover {
+    filter: brightness(120%);
+    cursor: pointer;
+}

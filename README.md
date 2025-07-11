@@ -8,9 +8,9 @@ This project is a practice project developed while learning the Django framework
 * Edit account details
 * Create blog posts with option to upload images
 * Edit and delete blog posts
-* Read and like other users' blog posts in a grid format with pagination
+* Read, like and comment on other users' blog posts in a grid format with pagination
 * Open a post to view the full content
-* Search for posts using post title or author
+* Search for posts using post title or author name
 
 ## How to install this practice project
 

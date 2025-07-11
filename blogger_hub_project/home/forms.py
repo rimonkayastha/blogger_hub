@@ -1,5 +1,6 @@
 from django import forms
 from .models import Post
+from .models import Comment
 
 class NewBlogForm(forms.ModelForm):
     class Meta:
@@ -18,4 +19,15 @@ class NewBlogForm(forms.ModelForm):
                     'class': 'post-file-input'
                 }
             ),
+        }
+
+class NewComment(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['text']
+        widgets = {
+            'text': forms.Textarea(attrs={
+                'class': 'comment-input',
+                'placeholder': 'Any thoughts?'
+            })
         }

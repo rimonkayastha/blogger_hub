@@ -1,0 +1,103 @@
+<div class="comment-section">
+    <div class="page-title">
+        COMMENTS
+    </div>
+    <div class="create-comment-section">
+        <div class="comment-left">
+            <a href="{% url 'account_page' username=request.user.username %}">
+                <img src="{{request.user.profile_image.url}}" class="profile-photo-comment">
+            </a>
+        </div>
+        <div class="create-comment-section-right">
+            <form method="post" class="create-comment-form">
+                {% csrf_token %}
+                {% for field in form.visible_fields %}
+                    {{field}}
+                    {{field.errors}}
+                {% endfor %}
+                <div class="comment-button">
+                    <button type='submit' name='create-comment' value='comment' class="comment-create-button">COMMENT</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="comment-flex">
+        {% for comment in comments %}
+            <div class="comment">
+                <div class="comment-left">
+                    <a href="{% url 'account_page' username=comment.author.username %}">
+                        <img src="{{comment.author.profile_image.url}}" class="profile-photo-comment">
+                    </a>
+                </div>
+                <div class="comment-right">
+                    <div class="comment-right-author">
+                        <a href="{% url 'account_page' username=comment.author.username %}">
+                            @{{comment.author.username}}
+                        </a>
+                    </div>
+                    <div class="comment-text-section">
+                        <div class="comment-right-text">
+                            {{comment.text}}
+                        </div>
+                    </div>
+                    <div class="comment-right-bottom">
+                        <div class="comment-right-published">
+                            Date: {{comment.published_date}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="bottom-section">
+        <div class="page-change">
+            {% if comments is not False %}
+                {% if comments.paginator.num_pages != 1 %}
+                    {% if comments.number != 1 %}
+                        <div class="comment-page-change-1">
+                            {% if search_str %}
+                                <a href="?page=1&search-bar={{search_str}}">1</a>
+                            {% else %}
+                                <a href="?page=1">1</a>
+                            {% endif %}
+                        </div>
+                        {% if posts.number != 2 %}
+                            <div class="comment-page-change-2">
+                                {% if search_str %}
+                                    <a href="?page={{comments.previous_page_number}}&search-bar={{search_str}}">Previous</a>
+                                {% else %}
+                                    <a href="?page={{comments.previous_page_number}}">Previous</a>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                    <div class="page-change-3">{{comments.number}} of {{comments.paginator.num_pages}}</div>
+                    {% if comments.number != comments.paginator.num_pages %}
+                        {% if comments.number != almost_final_page %}
+                            <div class="comment-page-change-4">
+                                {% if search_str %}
+                                    <a href="?page={{comments.next_page_number}}&search-bar={{search_str}}">Next</a>
+                                {% else %}
+                                    <a href="?page={{comments.next_page_number}}">Next</a>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                        <div class="comment-page-change-5">
+                            {% if search_str %}
+                                <a href="?page={{comments.paginator.num_pages}}&search-bar={{search_str}}">{{comments.paginator.num_pages}}</a>
+                            {% else %}
+                                <a href="?page={{comments.paginator.num_pages}}">{{comments.paginator.num_pages}}</a>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                {% else %}
+                    <div class="page-change-3">{{comments.number}} of {{comments.paginator.num_pages}}</div>
+                {% endif %}
+            {% else %}
+                <div class="page-title">
+                    NO POSTS FOUND
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>

@@ -16,5 +16,3 @@ class Comment(models.Model):
     text = models.CharField(max_length = 500)
     post = models.ForeignKey(Post, on_delete = models.CASCADE, default=None)
     published_date = models.DateField(default=None)
-    edited_date = models.DateField(default=None, null=True, blank=True)
-    likers = models.ManyToManyField(CustomUser, related_name='comments_liked')
