@@ -113,6 +113,18 @@ button {
     align-items: center;
     flex: 1;
 }
+.left-account-section {
+    
+}
+.middle-account-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+.right-account-section {
+    
+}
 .account-section {
     display: flex;
     justify-content: center;
