@@ -37,7 +37,11 @@
             
             <div class="blog-edit-icon">
                 <a href="{% url 'account_page' username=post.author.username %}">
-                    <img src="{{post.author.profile_image.url}}" class="account-profile-photo-detail-img">
+                    {% if post.author.profile_image %}
+                        <img src="{{post.author.profile_image.url}}" class="account-profile-photo-detail-img">
+                    {% else %}
+                        <img src="{% static 'icons/account.png' %}" class="account-profile-photo-detail-img">
+                    {% endif %}
                 </a>
                 {% if post.author == request.user %}
                     <a href="{% url 'post_edit' pk=post.pk %}">
@@ -67,7 +71,9 @@
                         </form>
                     </div>
                     <div class="like-count">
-                        {{likes}}
+                        <a href="{% url 'likers_view' pk=post.pk %}">
+                            {{likes}}
+                        </a>
                     </div>
                 </div>
             </div>

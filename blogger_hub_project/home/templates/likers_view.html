@@ -1,0 +1,21 @@
+{% extends 'header_home.html' %}
+{% load static %}
+
+{% block accountphoto %}
+    {% include 'account_photo_header.html' %}   
+{% endblock %}
+{% block content %}
+    {% block post-view-title %}
+        <div class="page-title">
+            Likes for "{{post.title}}""
+        </div>
+    {% endblock %}
+    <div class="like_list">
+        {% for liker, date_liked in liker_info %}
+            <div class="liker">
+                <img class="heart-liker" src="{% static 'icons/heart.png' %}">
+                Liked by @{{liker.username}} on {{date_liked}}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

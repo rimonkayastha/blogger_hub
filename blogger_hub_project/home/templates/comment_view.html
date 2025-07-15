@@ -1,3 +1,5 @@
+{% load static %}
+
 <div class="comment-section">
     <div class="page-title">
         COMMENTS
@@ -5,7 +7,11 @@
     <div class="create-comment-section">
         <div class="comment-left">
             <a href="{% url 'account_page' username=request.user.username %}">
-                <img src="{{request.user.profile_image.url}}" class="profile-photo-comment">
+                {% if request.user.profile_image %}
+                    <img src="{{request.user.profile_image.url}}" class="profile-photo-comment">
+                {% else %}
+                    <img src="{% static 'icons/account.png' %}" class="profile-photo-comment">
+                {% endif %}
             </a>
         </div>
         <div class="create-comment-section-right">
@@ -26,7 +32,11 @@
             <div class="comment">
                 <div class="comment-left">
                     <a href="{% url 'account_page' username=comment.author.username %}">
-                        <img src="{{comment.author.profile_image.url}}" class="profile-photo-comment">
+                        {% if comment.author.profile_image %}
+                            <img src="{{comment.author.profile_image.url}}" class="profile-photo-comment">
+                        {% else %}
+                            <img src="{% static 'icons/account.png' %}" class="profile-photo-comment">
+                        {% endif %}
                     </a>
                 </div>
                 <div class="comment-right">

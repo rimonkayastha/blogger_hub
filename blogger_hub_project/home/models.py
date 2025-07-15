@@ -9,7 +9,12 @@ class Post(models.Model):
     published_date = models.DateField(default=None)
     edited_date = models.DateField(default=None, null=True, blank=True)
     post_image = models.ImageField(null = True, blank = True, upload_to = 'images/')
-    likers = models.ManyToManyField(CustomUser, related_name='posts_liked')
+    likers = models.ManyToManyField(CustomUser, through='Like', through_fields=('post', 'user'))
+
+class Like(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='posts_liked')
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    date_liked = models.DateField(auto_now_add=True)
 
 class Comment(models.Model):
     author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, default=None, related_name='comments_written')

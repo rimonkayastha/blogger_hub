@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from django.contrib.auth import logout
 from django.utils import timezone
 from user.models import CustomUser
-from .models import Post, Comment
+from .models import Post, Comment, Like
 from .forms import NewBlogForm, NewComment
 from django.db.models import Q
 
@@ -56,9 +56,9 @@ def post_detail(request, pk):
     comment_list = Comment.objects.all().filter(post=post).order_by('-published_date')
     if request.method == 'POST':
         if request.POST.get('like-button') == 'like':
-            post.likers.add(request.user)
+            Like.objects.create(user=request.user, post=post)
         elif request.POST.get('like-button') == 'unlike':
-            post.likers.remove(request.user)
+            Like.objects.get(user=request.user, post=post).delete()
         elif request.POST.get('create-comment') == 'comment':
             form = NewComment(request.POST)
             if form.is_valid():
@@ -108,3 +108,9 @@ def search_result(request):
     else: 
         posts = False
     return render(request, 'search_result.html', {'posts': posts, 'user': user, 'almost_final_page': almost_final_page, 'search_str': search_str})
+
+def likers_view(request, pk):
+    post = Post.objects.get(pk=pk)
+    likes = Like.objects.filter(post=post)
+    liker_info = [(liker.user, liker.date_liked) for liker in likes]
+    return render(request, 'likers_view.html', {'post': post, 'liker_info':liker_info})

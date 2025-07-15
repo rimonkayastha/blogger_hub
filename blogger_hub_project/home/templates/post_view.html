@@ -1,3 +1,5 @@
+{% load static %}
+
 {% block post-view-title %}
     {% if search_str %}
         <div class="page-title">
@@ -14,7 +16,11 @@
     {% for post in posts %}
         <div class="post">
             <a href="{% url 'account_page' username=post.author.username %}">
-                <img src="{{post.author.profile_image.url}}" class="account-profile-photo-img">
+                {% if post.author.profile_image %}
+                    <img src="{{post.author.profile_image.url}}" class="account-profile-photo-img">
+                {% else %}
+                    <img src="{% static 'icons/account.png' %}" class="account-profile-photo-img">
+                {% endif %}
             </a>
             <div class="post-container">
                 <a href="{% url 'post_detail' pk=post.pk %}">
@@ -42,7 +48,9 @@
                     {% endif %}
                     <div class="post-bottom-section">
                         <div class="like-count-show">
-                            {{post.likers.count}} likes
+                            <a href="{% url 'likers_view' pk=post.pk %}">
+                                {{post.likers.count}} likes
+                            </a>
                         </div>
                         <div class="dates">
                             <div class="published-date">

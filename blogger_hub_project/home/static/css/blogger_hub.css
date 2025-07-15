@@ -809,3 +809,23 @@ button {
     filter: brightness(120%);
     cursor: pointer;
 }
+.like_list {
+    margin-right: 50px;
+    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(255, 255, 106);
+    box-shadow: 2px 2px 5px gray;
+}
+.heart-liker {
+    height: 20px;
+    width: 20px;
+    margin-right: 10px;
+}
+.liker {
+    display: flex;
+    margin: 10px;
+}
+.like-count:hover, .like-count-show:hover {
+    text-decoration: underline;
+}
